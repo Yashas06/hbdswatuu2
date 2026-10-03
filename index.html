@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Birthday</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Poppins,sans-serif;
+  background:#0d0a10;color:#fff;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,125,170,.16),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(155,120,255,.15),transparent 30%),
+    #0d0a10;
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.08;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+section{min-height:100vh;padding:90px 8%;display:flex;align-items:center;justify-content:center}
+.hero{text-align:center;position:relative}
+.eyebrow{letter-spacing:5px;text-transform:uppercase;font-size:12px;color:#f4a9c8;margin-bottom:22px}
+h1,h2{font-family:"Cormorant Garamond",serif;font-weight:600}
+h1{font-size:clamp(62px,11vw,145px);line-height:.8}
+.hero h1 span{display:block;color:#ffabc9;font-style:italic}
+.subtitle{max-width:620px;margin:35px auto;color:#cfc6d0;font-size:16px;line-height:1.9}
+.btn{
+  display:inline-block;border:1px solid rgba(255,255,255,.25);padding:15px 27px;
+  border-radius:50px;color:#fff;text-decoration:none;background:rgba(255,255,255,.06);
+  backdrop-filter:blur(10px);transition:.3s;cursor:pointer
+}
+.btn:hover{background:#fff;color:#151017;transform:translateY(-3px)}
+.scroll{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;color:#8e8490}
+h2{font-size:clamp(45px,7vw,82px);margin-bottom:20px}
+.section-intro{max-width:650px;color:#bbb0bc;line-height:1.9;margin-bottom:55px}
+.wrap{width:min(1100px,100%)}
+.center{text-align:center}
+
+.timeline{position:relative;margin-top:30px}
+.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(#ff9fc2,rgba(255,255,255,.08))}
+.event{width:50%;padding:0 45px 70px;position:relative}
+.event:nth-child(odd){margin-left:0;text-align:right}
+.event:nth-child(even){margin-left:50%}
+.dot{width:14px;height:14px;border-radius:50%;background:#ffabc9;position:absolute;top:4px;right:-7px;box-shadow:0 0 25px #ffabc9}
+.event:nth-child(even) .dot{left:-7px}
+.date{font-size:12px;letter-spacing:3px;color:#ffabc9;text-transform:uppercase;margin-bottom:8px}
+.event h3{font-family:"Cormorant Garamond";font-size:32px;margin-bottom:10px}
+.event p{color:#afa5b0;line-height:1.8;font-size:14px}
+.photo{
+  margin-top:20px;height:190px;border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg,#30202b,#19131c);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;color:#766b76;font-size:13px;
+}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  padding:30px;border:1px solid rgba(255,255,255,.1);border-radius:22px;
+  background:rgba(255,255,255,.045);backdrop-filter:blur(12px);transition:.4s
+}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,170,201,.45)}
+.card .emoji{font-size:35px;margin-bottom:18px}
+.card h3{font-family:"Cormorant Garamond";font-size:28px;margin-bottom:10px}
+.card p{font-size:13px;line-height:1.8;color:#aaa1ab}
+
+.letter{
+  max-width:760px;margin:auto;padding:55px;
+  border:1px solid rgba(255,255,255,.12);border-radius:28px;
+  background:rgba(255,255,255,.045);box-shadow:0 30px 100px rgba(0,0,0,.25)
+}
+.letter p{color:#cfc6d0;line-height:2;font-size:15px;margin:18px 0}
+.signature{font-family:"Cormorant Garamond";font-size:31px;color:#ffabc9;margin-top:30px}
+
+.final{text-align:center}
+.final .heart{font-size:65px;animation:pulse 1.7s infinite}
+.final h2{font-size:clamp(52px,8vw,100px)}
+.final p{color:#bbb0bc;max-width:600px;margin:20px auto 35px;line-height:1.9}
+footer{text-align:center;padding:35px;color:#665e68;font-size:11px;letter-spacing:2px}
+
+.reveal{opacity:0;transform:translateY(35px);transition:1s ease}
+.reveal.show{opacity:1;transform:none}
+@keyframes pulse{50%{transform:scale(1.12)}}
+
+.hearts span{
+  position:fixed;bottom:-35px;pointer-events:none;z-index:0;
+  opacity:.48;animation-name:float;animation-timing-function:linear;
+  animation-iteration-count:infinite;will-change:transform,opacity;
+}
+.heart-1{left:5%;font-size:15px;animation-duration:10s;animation-delay:0s}
+.heart-2{left:12%;font-size:22px;animation-duration:13s;animation-delay:4s}
+.heart-3{left:20%;font-size:16px;animation-duration:9s;animation-delay:1.5s}
+.heart-4{left:29%;font-size:20px;animation-duration:12s;animation-delay:6s}
+.heart-5{left:38%;font-size:14px;animation-duration:10s;animation-delay:3s}
+.heart-6{left:46%;font-size:24px;animation-duration:14s;animation-delay:8s}
+.heart-7{left:54%;font-size:16px;animation-duration:11s;animation-delay:2s}
+.heart-8{left:62%;font-size:21px;animation-duration:13s;animation-delay:7s}
+.heart-9{left:70%;font-size:15px;animation-duration:9s;animation-delay:4.5s}
+.heart-10{left:77%;font-size:23px;animation-duration:12s;animation-delay:1s}
+.heart-11{left:83%;font-size:17px;animation-duration:10s;animation-delay:5.5s}
+.heart-12{left:89%;font-size:21px;animation-duration:14s;animation-delay:9s}
+.heart-13{left:94%;font-size:14px;animation-duration:11s;animation-delay:3.5s}
+.heart-14{left:25%;font-size:19px;animation-duration:15s;animation-delay:10s}
+@keyframes float{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:0}
+  10%{opacity:.48}
+  45%{transform:translate3d(18px,-50vh,0) rotate(8deg)}
+  75%{transform:translate3d(-14px,-82vh,0) rotate(-8deg)}
+  100%{transform:translate3d(10px,-110vh,0) rotate(14deg);opacity:0}
+}
+
+.heart-chapter,.return-chapter,.confession-chapter{
+  min-height:100vh;position:relative;overflow:hidden;text-align:center;
+}
+.heart-chapter{
+  background:
+    radial-gradient(circle at center,rgba(255,150,190,.10),transparent 48%),
+    #100b11;
+}
+.heart-inner,.return-inner,.confession-inner{
+  width:min(760px,100%);position:relative;z-index:1
+}
+.heart-chapter .eyebrow{color:#ffabc9}
+.heart-chapter h2,.return-chapter h2,.confession-chapter h2{
+  font-size:clamp(55px,9vw,105px);color:#eee;
+}
+.heart-line,.return-line{
+  width:1px;height:80px;background:rgba(255,171,201,.45);margin:35px auto;
+}
+.heart-chapter p,.return-chapter p,.confession-chapter p{
+  color:#c9bec8;font-family:"Cormorant Garamond",serif;
+  font-size:25px;line-height:1.7;margin:5px 0;
+}
+.heart-chapter p.dim,.return-chapter p.dim,.confession-chapter p.dim{
+  color:#756b75;font-size:20px;margin-top:24px;
+}
+.heart-chapter strong{color:#ffabc9;font-weight:600}
+.heart-gap{
+  color:#4b3944;font-size:42px;letter-spacing:12px;margin:45px 0;
+}
+.heart-chapter em{color:#e5d7e0}
+.return-chapter{
+  background:
+    radial-gradient(circle at 50% 45%,rgba(255,190,210,.12),transparent 45%),
+    #171018;
+}
+.return-chapter .eyebrow,.confession-chapter .eyebrow{color:#ffabc9}
+.return-chapter h3,.confession-chapter h3{
+  font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:#ffabc9;margin-top:18px;
+}
+.confession-chapter{
+  background:
+    radial-gradient(circle at 50% 45%,rgba(190,160,255,.08),transparent 45%),
+    #0d0a10;
+}
+
+
+.chapter-two-timeline .event:nth-child(odd){
+  margin-left:0;
+  text-align:right;
+}
+.chapter-two-timeline .event:nth-child(even){
+  margin-left:50%;
+  text-align:left;
+}
+.chapter-two-timeline .event .photo{
+  margin-left:0;
+  margin-right:0;
+}
+.memory-gallery-section{margin-top:120px}
+.memory-board{
+  width:min(100%,950px);
+  height:560px;
+  margin:20px auto 10px;
+  position:relative;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 30% 25%,rgba(255,171,201,.08),transparent 30%),
+    radial-gradient(circle at 75% 70%,rgba(170,140,255,.07),transparent 32%),
+    rgba(255,255,255,.025);
+  overflow:hidden;
+}
+.memory-card{
+  position:absolute;
+  width:190px;
+  padding:10px 10px 14px;
+  background:#f3eee9;
+  color:#2b2428;
+  border-radius:4px;
+  box-shadow:0 18px 35px rgba(0,0,0,.35);
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+  transition:box-shadow .2s,transform .2s;
+}
+.memory-card:active{cursor:grabbing}
+.memory-card:hover{box-shadow:0 24px 45px rgba(0,0,0,.45)}
+.memory-card span{display:none}
+.memory-photo{
+  height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:45px;
+  background:linear-gradient(135deg,#d8c8ce,#eee3e4);
+  overflow:hidden;
+}
+.memory-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.m1{left:7%;top:12%;transform:rotate(-7deg)}
+.m2{left:38%;top:8%;transform:rotate(4deg)}
+.m3{right:7%;top:17%;transform:rotate(-5deg)}
+.m4{left:18%;bottom:10%;transform:rotate(6deg)}
+.m5{left:48%;bottom:7%;transform:rotate(-4deg)}
+.m6{right:11%;bottom:9%;transform:rotate(7deg)}
+.gallery-controls{margin-top:22px}
+.gallery-shuffle{border-color:rgba(255,171,201,.35)}
+.gallery-hint{font-size:12px;color:#807681;margin-top:12px}
+@media(max-width:700px){
+  .memory-board{height:620px}
+  .memory-card{width:145px}
+  .memory-photo{height:112px}
+  .m1{left:4%;top:8%}
+  .m2{left:38%;top:5%}
+  .m3{right:3%;top:29%}
+  .m4{left:5%;bottom:9%}
+  .m5{left:37%;bottom:6%}
+  .m6{right:3%;bottom:27%}
+}
+
+@media(max-width:700px){
+  .chapter-two-timeline .event:nth-child(odd),
+  .chapter-two-timeline .event:nth-child(even){
+    width:100%;
+    margin-left:0;
+    text-align:left;
+    padding-left:38px;
+    padding-right:0;
+  }
+  .chapter-two-timeline .event:nth-child(odd) .dot,
+  .chapter-two-timeline .event:nth-child(even) .dot{
+    left:1px;
+    right:auto;
+  }
+}
+
+@media(max-width:700px){
+  .chapter-two-timeline .event:nth-child(odd),
+    .chapter-two-timeline .event:nth-child(odd) .dot,
+  .chapter-two-timeline .event:nth-child(even) .dot{left:1px;right:auto}
+}
+.black-chapter{
+  min-height:100vh;
+  background:#030303;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.black-chapter:before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(circle at center,rgba(255,255,255,.035),transparent 48%);
+  pointer-events:none;
+}
+.black-inner{width:min(760px,100%);position:relative;z-index:1}
+.black-chapter .eyebrow{color:#666}
+.black-date{
+  font-size:11px;letter-spacing:4px;color:#4d4d4d;
+  margin-bottom:28px;text-transform:uppercase
+}
+.black-chapter h2{
+  font-size:clamp(55px,9vw,105px);
+  color:#d5d5d5;
+  letter-spacing:-1px;
+}
+.black-line{
+  width:1px;height:80px;background:#333;margin:35px auto;
+}
+.black-chapter p{
+  color:#aaa;font-family:"Cormorant Garamond",serif;
+  font-size:25px;line-height:1.7;margin:4px 0;
+}
+.black-chapter p.dim{color:#555;font-size:19px;margin-top:25px}
+.black-gap{
+  color:#292929;font-size:42px;letter-spacing:12px;margin:50px 0;
+}
+.return-date{
+  margin-top:35px;color:#ffabc9;letter-spacing:5px;
+  font-size:12px;text-transform:uppercase;
+}
+.black-chapter h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;font-weight:500;color:#eee;margin-top:12px;
+}
+
+@media(max-width:700px){
+  .hearts span{opacity:.30}
+  .heart-1{left:4%;font-size:12px;animation-duration:11s}
+  .heart-2{left:16%;font-size:16px;animation-duration:14s}
+  .heart-3{left:29%;font-size:13px;animation-duration:10s}
+  .heart-4{left:43%;font-size:15px;animation-duration:13s}
+  .heart-5{left:57%;font-size:12px;animation-duration:11s}
+  .heart-6{left:70%;font-size:17px;animation-duration:15s}
+  .heart-7{left:84%;font-size:13px;animation-duration:12s}
+  .heart-8{left:93%;font-size:15px;animation-duration:14s}
+  .heart-9,.heart-10,.heart-11,.heart-12,.heart-13,.heart-14{display:none}
+}
+
+@media(max-width:700px){
+  section{padding:75px 6%}
+  .timeline:before{left:8px}
+  .event,.event:nth-child(even){width:100%;margin-left:0;text-align:left;padding-left:38px;padding-right:0}
+  .dot,.event:nth-child(even) .dot{left:1px;right:auto}
+  .cards{grid-template-columns:1fr}
+  .letter{padding:30px 22px}
+  h1{font-size:72px}
+}
+
+/* Keep the First Trip paragraphs neatly aligned with the timeline */
+.first-trip-item p {
+  text-align: left;
+  line-height: 1.8;
+  margin: 0 0 14px;
+}
+.first-trip-item p:last-child {
+  margin-bottom: 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="hearts" aria-hidden="true">
+  <span class="heart-1">♥</span><span class="heart-2">♡</span>
+  <span class="heart-3">♥</span><span class="heart-4">♡</span>
+  <span class="heart-5">♥</span><span class="heart-6">♡</span>
+  <span class="heart-7">♥</span><span class="heart-8">♡</span>
+  <span class="heart-9">♥</span><span class="heart-10">♡</span>
+  <span class="heart-11">♥</span><span class="heart-12">♡</span>
+  <span class="heart-13">♥</span><span class="heart-14">♡</span>
+</div>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">A little something for you</div>
+    <h1>Happy Birthday,<span>Swatuu.</span></h1>
+    <p class="subtitle">
+      I could have just sent you a birthday message…<br>
+      but our friendship deserves more than a text.
+    </p>
+    <a href="#story" class="btn">Begin our story ↓</a>
+  </div>
+  <div class="scroll">SCROLL TO EXPLORE</div>
+</section>
+
+<section id="story">
+  <div class="wrap">
+    <div class="center reveal">
+      <div class="eyebrow">Chapter One</div>
+      <h2>Before We Ever Met</h2>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto">
+        Six years of knowing someone before finally meeting them in real life.
+        It all started with something so random — an Instagram story reply.
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">The Beginning</div>
+        <h3>It started with an Instagram story.</h3>
+        <p>
+          I randomly replied to your story on Instagram. Neither of us knew that
+          one small reply was going to become the beginning of our story.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">Behind the screen</div>
+        <h3>Six years without meeting.</h3>
+        <p>
+          For all those years, we stayed behind the screen. We kept texting,
+          talking and getting to know each other more and more. But somewhere
+          inside, I was scared to meet you in real life. So somehow, the screen
+          felt easier — and our story stayed there for a long time.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">July 2021</div>
+        <h3>“U Gave me your number.”</h3>
+        <p>
+          After all those conversations on Instagram, I finally asked for your
+          phone number. It was a small step, but it changed the way we talked.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">July 2021</div>
+        <h3>For the first time, I heard your voice.</h3>
+        <p>
+          After knowing you for so long through messages, I finally heard your
+          voice for the first time. A moment that probably felt simple then,
+          but became another little milestone in our story.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">May 22, 2022</div>
+        <h3>The last conversation.</h3>
+        <p>
+          This is where the story went quiet for a while.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</section>
+
+<section class="heart-chapter">
+  <div class="heart-inner reveal">
+    <div class="eyebrow">The part I never said</div>
+    <h2>The Things I Never Said</h2>
+    <div class="heart-line"></div>
+    <p>Somewhere along the way, something changed for me.</p>
+    <p><strong>I started liking you.</strong></p>
+    <p>I was scared to say it.</p>
+    <p class="dim">I kept thinking that if I confessed what I was feeling, I might somehow ruin the friendship we had. So I kept everything inside.</p>
+    <p class="dim">I overthought everything. I felt things I didn't know how to explain. Sometimes I was jealous, sometimes confused, and most of the time I simply didn't know what to do with all those feelings.</p>
+    <p>So I stayed quiet.</p>
+    <div class="heart-gap">…</div>
+    <p><em>There were so many things I wanted to say, but never did.</em></p>
+  </div>
+</section>
+
+<section class="black-chapter">
+  <div class="black-inner reveal">
+    <div class="eyebrow">The chapter left in the dark</div>
+    <div class="black-date">May 22, 2022 — March 2026</div>
+    <h2>The Black Chapter</h2>
+    <div class="black-line"></div>
+    <p>The last conversation.</p>
+    <p>And then I slowly disappeared.</p>
+    <p class="dim">I was the one who created that distance.</p>
+    <p class="dim">You tried to reach me.</p>
+    <p class="dim">And I didn't respond.</p>
+    <div class="black-gap">…</div>
+    <p>For more than three years, a part of our story went completely silent.</p>
+    <p class="dim">I don't want to explain that chapter.</p>
+    <p class="dim">I just know that I wish I had handled some things differently.</p>
+  </div>
+</section>
+
+<section class="return-chapter">
+  <div class="return-inner reveal">
+    <div class="eyebrow">March 2026</div>
+    <h2>Somehow, We Found Our Way Back</h2>
+    <div class="return-line"></div>
+    <p>After all those years, we started talking again.</p>
+    <p class="dim">Maybe it was coincidence.<br>Maybe it was timing.<br>Maybe some friendships simply find their way back.</p>
+    <p>Whatever it was...</p>
+    <h3>I'm glad we did.</h3>
+  </div>
+</section>
+
+
+
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center reveal">
+      <div class="eyebrow">Chapter Two</div>
+      <h2>And Then We Found Our Way Back</h2>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto">
+        March 2026 — after all that silence, the conversation began again. And this time, the story didn't stay behind a screen.
+      </p>
+    </div>
+
+    <div class="timeline chapter-two-timeline">
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">July 11, 2026</div>
+        <h3>The First Time We Met</h3>
+        <p>
+          Six years of knowing you through a screen, and suddenly, there you were
+          standing right in front of me.
+        </p>
+        <p style="margin-top:14px">
+          I was honestly so nervous to talk to you. Even looking at your face felt
+          different in real life — I was shy, awkward, and probably didn't know
+          where to look or what to say.
+        </p>
+        <p style="margin-top:14px;color:#ffabc9">
+          But somehow, those nerves slowly disappeared. And what was supposed to
+          be just a first meeting turned into almost five hours together.
+        </p>
+        <p style="margin-top:14px">
+          Five hours of talking, laughing, and simply being together — after all
+          those years of only knowing each other through a screen.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">July 14, 2026</div>
+        <h3>The Second Meet</h3>
+        <p>
+          Three days later, we met again — and this time, it already felt a little
+          easier to be around each other.
+        </p>
+        <p style="margin-top:14px">
+          We talked even more and spent time giggling
+          about all those old memories — the way we used to text each other,
+          those old screenshots, and all the little things that once happened
+          behind a screen.
+        </p>
+        <p style="margin-top:14px">
+          And somehow, even something as simple as having tea together in the
+          morning became a memory I know I won't forget.
+        </p>
+        <p style="margin-top:14px;color:#ffabc9">
+          It wasn't just about what we did. It was about finally getting to live
+          all those little moments together instead of only talking about them.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">Somewhere between the second and third meet</div>
+        <h3>I Finally Said It</h3>
+        <p>
+          This time, I didn't want to keep everything inside. I was scared —
+          really scared that saying how I felt might change our friendship.
+          But after everything we'd already been through, I finally found the
+          courage to say it.
+        </p>
+        <p style="margin-top:14px;color:#ffabc9">
+          And instead of losing the friendship I was so afraid of losing...
+          we became even closer.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">August 4, 2026</div>
+        <h3>The Third Meet</h3>
+        <p>
+          And somehow, after finally saying what I had been holding inside,
+          we were getting closer every day.
+        </p>
+        <p style="margin-top:18px">
+          And then you gave me my first gift from you — a Guardian Bell.
+        </p>
+        <p style="margin-top:10px;color:#ffabc9">
+          It wasn't just a little gift. It became one of those small things
+          that carries a memory with it — a reminder of that day, of you,
+          and of how our story was slowly becoming something real.
+        </p>
+      </div>
+
+      <div class="event reveal">
+        <div class="dot"></div>
+        <div class="date">September 5–6, 2026</div>
+        <h3>Our First Trip</h3>
+        <p>Our first trip together — Chikmagaluru.</p>
+        <p>We just wanted to get away, spend some time together, and make a few memories. I'm really glad I got to take you to some of the places you had wanted to see.</p>
+        <p>But honestly, my favourite part was the simple moments — the car rides, the music, the conversations, and just having you beside me.</p>
+        <p>We didn't need a perfect itinerary. We just needed those two days together.</p>
+      
+      </div></div>
+
+    <div class="memory-gallery-section reveal">
+      <div class="center">
+        <div class="eyebrow">A little collection of us</div>
+        <h2 style="font-size:clamp(45px,7vw,78px)">Our Memories</h2>
+        <p class="section-intro" style="margin-left:auto;margin-right:auto">
+          A few photos from our story — use any picture you want in any spot, then move them around.
+        </p>
+      </div>
+
+      <div class="memory-board" id="memoryBoard">
+        <div class="memory-card m1" data-label="Memory">
+          <div class="memory-photo"> <img src="1.jpg" alt="Memory 1"></div>
+        </div>
+        <div class="memory-card m2" data-label="Memory">
+          <div class="memory-photo"> <img src="7.jpeg" alt="Memory 7"></div>
+        </div>
+        <div class="memory-card m3" data-label="Memory">
+          <div class="memory-photo"> <img src="3.jpeg" alt="Memory 3"></div>
+        </div>
+        <div class="memory-card m4" data-label="Memory">
+          <div class="memory-photo"> <img src="4.jpg" alt="Memory 4"></div>
+        </div>
+        <div class="memory-card m5" data-label="Memory">
+          <div class="memory-photo"> <img src="5.jpg" alt="Memory 5"></div>
+        </div>
+        <div class="memory-card m6" data-label="Memory">
+          <div class="memory-photo"> <img src="6.jpg" alt="Memory 6"></div>
+        </div>
+      </div>
+
+      <div class="gallery-controls center">
+        <button class="btn gallery-shuffle" type="button" id="shuffleMemories">✨ Shuffle memories</button>
+        <p class="gallery-hint">Use any photo in any spot. Drag them around or tap one to bring it to the front.</p>
+      </div>
+    </div>
+
+    <div class="center reveal" style="margin-top:90px">
+      <div class="eyebrow">The little things</div>
+      <h2 style="font-size:clamp(42px,6vw,70px)">Things Only We Understand</h2>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto">
+        The kind of things that would make absolutely no sense to anyone else.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card reveal"><div class="emoji">💬</div><h3>Our Random Conversations</h3><p>The completely random nicknames we gave each other for no reason, the nonsense conversations that made absolutely no sense to anyone else, and the way we'd suddenly become two little kids just messing around. Somehow, those stupid conversations became some of my favourite memories.</p></div>
+      <div class="card reveal"><div class="emoji">🤦</div><h3>Our dumb decisions</h3><p>From random “let's meet” plans to somehow ending up miles away from where we started, we have a talent for turning simple plans into something completely different. Half the time we don't even know what we're doing — but somehow, those are the moments I remember the most.</p></div>
+      <div class="card reveal"><div class="emoji">🫶</div><h3>The little things</h3><p>It's not always the big moments that stay with me. It's the little things — the random smiles, the conversations that lasted longer than they should have, the car rides, the bike rides, the way you looked at me, and those moments when neither of us really wanted the day to end.</p></div>
+    </div>
+  </div>
+</section>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center reveal">
+      <div class="eyebrow">Chapter Three</div>
+      <h2>Things I Never Say Enough</h2>
+      <p class="section-intro" style="margin-left:auto;margin-right:auto">
+        So I'm saying them now.
+      </p>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><div class="emoji">🌷</div><h3>Thank you</h3><p>Thank you for being there through the good days, the bad days, and all the chaotic ones in between.Thank you for believing in me, for still being here, and for letting me find my way back to you.And thank you for giving me the chance to make all these new memories with you. ❤️</p></div>
+      <div class="card reveal"><div class="emoji">✨</div><h3>I'm proud of you</h3><p>Never forget how far you've come. I hope you always see yourself the way I see you — someone who's grown so much, overcome so much, and deserves to be proud of the person you've become.</p></div>
+      <div class="card reveal"><div class="emoji">❤️</div><h3>You're important to me</h3><p>I don't always say it, and sometimes I probably don't even know how to show it, but you genuinely mean a lot to me. Having you around makes my life a little happier, and I hope you never forget how important you are to me.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center reveal">
+      <div class="eyebrow">The part I actually mean</div>
+      <h2>A Letter For You</h2>
+    </div>
+    <div class="letter reveal">
+      <p>Oye Swatuu,</p>
+       <p>
+      Happy Birthday, Swatuu! 🎂❤️
+      </p>
+      
+      <p>
+    I don't think I've ever really known how to explain what it feels like being around you.
+  </p>
+
+  <p>
+    There's something about your presence that makes everything feel a little lighter.
+    I can be having a completely normal day, and somehow, spending time with you makes it
+    feel like a day worth remembering. I don't always need us to be doing something special.
+    Sometimes just having you beside me is enough.
+  </p>
+
+  <p>
+    I love how comfortable I feel around you, even though there are still moments when I
+    get nervous, overthink things, or don't know what to say. Somehow, even those awkward
+    moments feel special because they're with you.
+  </p>
+
+  <p>
+    Being around you makes me forget about time. A few minutes somehow become hours, and
+    when it's finally time to leave, there's always this little part of me that wishes we
+    had just a little more time.
+  </p>
+
+  <p>
+    I don't know exactly when you became this important to me. It wasn't one particular
+    moment. It was probably all the little moments slowly adding up until one day I realised
+    that having you around had become something I genuinely looked forward to.
+  </p>
+
+  <p>
+    You have this way of making me feel happy without even trying. And maybe that's what I
+    appreciate the most — I don't have to pretend to be anything around you. I can just be
+    myself, be stupid, laugh too much, say random things, and somehow it all feels right.
+  </p>
+
+  <p>
+    If there's one thing I hope you always know, it's that your presence means more to me
+    than I probably say out loud.
+  </p>
+
+  <p>
+    I'm really grateful for every moment I get to spend with you, for every laugh, every
+    conversation, every silence, and even the moments where we do absolutely nothing.
+  </p>
+
+  <p>
+    Some people become important to you slowly, without you even noticing.
+  </p>
+
+  <p>
+    You became that person for me.
+  </p>
+
+  <p>
+    And honestly, I'm just really glad you're here. ❤️
+  </p>
+      <p>
+  And there's one more thing I want you to know.
+  I wished you Happy Birthday every single day this whole month.
+  And somehow, today is the last day of me wishing you.
+  A little part of me doesn't want this month of wishing you to end,
+  because it gave me an excuse every day to remind you how special you are to me.
+</p>
+
+<p>
+  So this is my last “Happy Birthday” for this month, but definitely not
+  the last time I'll remind you how much you mean to me. ❤️
+</p>
+
+<p>
+  Happy Birthday once again, Swatuu. ❤️
+</p>
+      <div class="signature">Your forever annoying best friend ❤️</div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap reveal">
+    <div class="heart">❤️</div>
+    <div class="eyebrow">One last thing</div>
+    <h2>I'm really glad<br>it's you.</h2>
+    <p>
+      Happy Birthday, Swatuuu. Here's to all the memories we've already made,
+      and all the ones we haven't even imagined yet.
+    </p>
+    <a href="#" class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Read it again ↑</a>
+  </div>
+</section>
+
+<footer>MADE WITH ❤️ FOR MY SWATUUU</footer>
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('show');
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const board = document.getElementById('memoryBoard');
+const cards = [...document.querySelectorAll('.memory-card')];
+const shuffleBtn = document.getElementById('shuffleMemories');
+let z = 10;
+
+cards.forEach(card => {
+  let dragging = false, startX = 0, startY = 0, baseX = 0, baseY = 0;
+
+  card.addEventListener('pointerdown', e => {
+    dragging = true;
+    card.setPointerCapture(e.pointerId);
+    const rect = card.getBoundingClientRect();
+    const boardRect = board.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    baseX = rect.left - boardRect.left;
+    baseY = rect.top - boardRect.top;
+    card.style.zIndex = ++z;
+    card.style.transition = 'box-shadow .2s';
+  });
+
+  card.addEventListener('pointermove', e => {
+    if(!dragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    const maxX = board.clientWidth - card.offsetWidth - 8;
+    const maxY = board.clientHeight - card.offsetHeight - 8;
+    const x = Math.max(8, Math.min(maxX, baseX + dx));
+    const y = Math.max(8, Math.min(maxY, baseY + dy));
+    const rotate = (parseFloat(getComputedStyle(card).transform.match(/matrix\(([^)]+)\)/)?.[1]?.split(',')[1] || 0) || 0) * 0.2;
+    card.style.left = x + 'px';
+    card.style.top = y + 'px';
+    card.style.right = 'auto';
+    card.style.bottom = 'auto';
+    card.style.transform = `rotate(${rotate}deg)`;
+  });
+
+  card.addEventListener('pointerup', () => {
+    dragging = false;
+  });
+
+  card.addEventListener('click', () => {
+    if(!dragging) card.style.zIndex = ++z;
+  });
+});
+
+shuffleBtn.addEventListener('click', () => {
+  const maxX = Math.max(10, board.clientWidth - 205);
+  const maxY = Math.max(10, board.clientHeight - 175);
+  cards.forEach((card, i) => {
+    card.style.left = Math.round(10 + Math.random() * maxX) + 'px';
+    card.style.top = Math.round(10 + Math.random() * maxY) + 'px';
+    card.style.right = 'auto';
+    card.style.bottom = 'auto';
+    card.style.transform = `rotate(${Math.round(-8 + Math.random()*16)}deg)`;
+    card.style.zIndex = ++z;
+  });
+});
+</script>
+</body>
+</html>
